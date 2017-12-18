@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Deep Comparison</title>
+</head>
+
+<body>
+    <h1>Deep Comparison</h1>
+    <p>Please open the JavaScript console.</p>
+    <script>
+        let deepEqual = function deepEqual(a, b) {
+
+            if ((a == null && b != null) || (a != null && b == null))
+                return false;
+
+            for (let prop in a) {
+                
+                if (!(prop in b) || typeof a[prop] != typeof b[prop]) 
+                    return false;
+
+                if (a[prop] !== b[prop] && (typeof a[prop] != 'object' && typeof b[prop] != 'object'))
+                    return false;
+
+                if (typeof a[prop] == 'object' && typeof b[prop] == 'object') {
+                    if (deepEqual(a[prop], b[prop]) == false)
+                        return false;
+                }
+            }
+            return true;
+
+        }
+
+        var obj = { here: { is: "an" }, object: 2 };
+        console.log(deepEqual(obj, { slam: true })); // false
+        console.log(deepEqual(obj, obj)); // true
+        console.log(deepEqual(obj, { here: 1, object: 2 })); // false
+        console.log(deepEqual(null, null)); // true
+        console.log(deepEqual({ king: { disnt: 'vegetable' } }, { king: { is: 'vegetable' } })); // false
+        console.log(deepEqual(obj, { here: null, object: 2 })); // false
+        console.log(deepEqual(obj, null)); // false
+        console.log(deepEqual(obj, { here: { is: "an" }, object: 2 })); // true
+        console.log(deepEqual(obj, { here: { is: { nothing: '!' } }, object: 5 })); // false
+        console.log(deepEqual(obj, [1,null,3])); // false
+    </script>
+</body>
+
+</html>
