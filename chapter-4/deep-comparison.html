@@ -31,17 +31,23 @@
 
         }
 
+        function printDeepEqual(a, b){
+            result = deepEqual(a,b);
+            console.log("comparing", a, "to", b, ":", result);
+        }
+
         var obj = { here: { is: "an" }, object: 2 };
-        console.log(deepEqual(obj, { slam: true })); // false
-        console.log(deepEqual(obj, obj)); // true
-        console.log(deepEqual(obj, { here: 1, object: 2 })); // false
-        console.log(deepEqual(null, null)); // true
-        console.log(deepEqual({ king: { disnt: 'vegetable' } }, { king: { is: 'vegetable' } })); // false
-        console.log(deepEqual(obj, { here: null, object: 2 })); // false
-        console.log(deepEqual(obj, null)); // false
-        console.log(deepEqual(obj, { here: { is: "an" }, object: 2 })); // true
-        console.log(deepEqual(obj, { here: { is: { nothing: '!' } }, object: 5 })); // false
-        console.log(deepEqual(obj, [1,null,3])); // false
+        
+        printDeepEqual(obj, { here: 1, object: 2 }); // false
+        printDeepEqual(null, null); // true
+        printDeepEqual(obj, obj); // true
+        printDeepEqual(obj, { slam: true }); // false
+        printDeepEqual({ king: { disnt: 'vegetable' } }, { king: { is: 'vegetable' } }); // false
+        printDeepEqual(obj, { here: null, object: 2 }); // false
+        printDeepEqual(obj, null); // false
+        printDeepEqual(obj, { here: { is: "an" }, object: 2 }); // true
+        printDeepEqual(obj, { here: { is: { nothing: '!' } }, object: 5 }); // false
+        printDeepEqual(obj, [1, null, 3]); // false
     </script>
 </body>
 
