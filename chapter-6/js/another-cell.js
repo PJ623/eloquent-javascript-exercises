@@ -31,26 +31,25 @@ TextCell.prototype.draw = function (width, height) {
 // END
 
 function StretchCell(inner, width, height) {
-
-    TextCell.call(this, inner.text[0]);
-
-    function getBigger(a, b) {
-        if (a > b)
-            return a;
-        return b;
-    }
-    this.width = getBigger(inner.minWidth(), width);
-    this.height = getBigger(inner.minHeight(), height);
+    this.inner = inner;
+    this.width = width;
+    this.height = height;
 }
 
-StretchCell.prototype = Object.create(TextCell.prototype);
-
 StretchCell.prototype.minWidth = function minWidth() {
+    if (this.inner.minWidth() > this.width)
+        return this.inner.minWidth();
     return this.width;
 };
 
 StretchCell.prototype.minHeight = function minHeight() {
+    if (this.inner.minHeight() > this.height)
+        return this.inner.minHeight();
     return this.height;
+};
+
+StretchCell.prototype.draw = function (width, height) {
+    return this.inner.draw(width, height);    
 };
 
 let sc = new StretchCell(new TextCell('abc'), 1, 2);
