@@ -19,7 +19,7 @@ Object.defineProperty(Vector.prototype, "length", {
 
 let myVector = new Vector(1,2);
 
-console.log('myVector =', myVector);
-console.log('myVector.plus(new Vector(2,3)) =', myVector.plus(new Vector(2,3)));
-console.log('myVector.plus(new Vector(2,3)) =', myVector.minus(new Vector(2,3)));
-console.log('new Vector(3, 4).length =', new Vector(3, 4).length);
+console.log('myVector =', myVector); // Vector {x: 1, y: 2}
+console.log('myVector.plus(new Vector(2,3)) =', myVector.plus(new Vector(2,3))); // Vector{x: 3, y: 5}
+console.log('myVector.plus(new Vector(2,3)) =', myVector.minus(new Vector(2,3))); // Vector{x: -1, y: -1}
+console.log('new Vector(3, 4).length =', new Vector(3, 4).length); // 5
